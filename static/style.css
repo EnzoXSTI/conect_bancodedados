@@ -1,0 +1,136 @@
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #0d0d0d;
+    --primary-color: #00ffe7;
+    --secondary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --accent-color: #ff00c8;
+    --hover-color: #00ffae;
+    --border-color: #00ffe755;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+.flash-messages {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.flash {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px auto;
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    background-color: #1a001a;
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--border-color);
+}
+
+main h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #111;
+    box-shadow: 0 0 15px var(--primary-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr:hover {
+    background-color: var(--hover-color);
+    color: #000;
+    transition: 0.3s;
+}
+
+tbody td {
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    tbody td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+}
