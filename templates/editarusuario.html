@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+</head>
+<body>
+
+    <h1>Editar Usuário</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('editarusuario', id=usuario[0]) }}">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" value="{{ usuario[1] }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ usuario[2] }}" required><br><br>
+
+        <label for="senha">Senha:</label><br>
+        <input type="password" id="senha" name="senha" value="{{ usuario[3] }}" required><br><br>
+
+        <button type="submit">Salvar</button>
+        <a href="{{ url_for('usuarios') }}">Cancelar</a>
+    </form>
+
+</body>
+</html>

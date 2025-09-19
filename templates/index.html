@@ -10,8 +10,10 @@
 <header>
         <h1>Biblioteca</h1>
   <nav>
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('novo') }}">Adicionar Livro</a>
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('adicionar') }}">Adicionar Livro</a>      
+        <a href="{{ url_for('novousuario') }}">Cadastrar Usuário</a>
+        <a href="{{ url_for('login') }}">Login</a>
 </nav>
 {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
