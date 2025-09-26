@@ -48,8 +48,7 @@
                     <td>
                         <a href="{{ url_for('editar', id=livro[0]) }}">Editar</a>
                          <form action="{{ url_for('deletar', id=livro[0]) }}" method="post" style="display:inline;">
-                            <button type="submit">Deletar</button>
-
+                            <button>Deletar</button>
                     </td>
                 </tr>
                 {% endfor %}

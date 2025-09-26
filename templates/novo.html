@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Novo Livro</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <header>
-        <h1>Biblioteca</h1>
+        <h1>Adicionar Novo Livro</h1>
     </header>
     <main>
-        <h2>Adicionar Novo Livro</h2>
+
 
         <form action="{{ url_for('criar') }}" method="post" enctype="multipart/form-data">
             <label for="titulo">Título:</label>

@@ -1,173 +1,262 @@
-/* Geral */
+/* =======================
+   REFINAMENTOS GERAIS E VARIÁVEIS
+======================= */
+:root {
+  --cor-fundo: #f8f9fa;
+  --cor-texto: #212529;
+  --cor-primaria: #0d6efd;
+  --cor-primaria-hover: #0b5ed7;
+  --cor-sucesso: #198754;
+  --cor-perigo: #dc3545;
+  --cor-perigo-hover: #bb2d3b;
+  --cor-header: #1f2937;
+  --cor-header-texto: #ffffff;
+  --borda-radius: 8px;
+  --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --fonte-principal: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Adicione esta linha no <head> do seu HTML para importar a fonte */
+/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"> */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #f4f4f4;
-    color: #333;
+  font-family: var(--fonte-principal);
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* =======================
+   HEADER + NAV
+======================= */
 header {
-    background-color: #2a3d66;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+  background: var(--cor-header);
+  color: var(--cor-header-texto);
+  padding: 1.5rem 0;
+  text-align: center;
+  border-bottom: 4px solid var(--cor-primaria);
 }
 
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+nav {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 
 nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
+  color: var(--cor-header-texto);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: var(--borda-radius);
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
 }
 
 nav a:hover {
-    text-decoration: underline;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.flash-messages {
-    margin: 20px 0;
+/* =======================
+   TABELAS
+======================= */
+.tabela-wrapper {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra-suave);
+    margin: 2rem 0;
 }
 
-.flash {
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.flash.success {
-    background-color: #4caf50;
-    color: white;
-}
-
-.flash.error {
-    background-color: #f44336;
-    color: white;
-}
-
-main {
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Tabela */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    padding: 12px 15px;
-    text-align: left;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
 }
 
 th {
-    background-color: #2a3d66;
-    color: white;
+  background: var(--cor-fundo);
+  color: #495057;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+tr:last-child td {
+    border-bottom: none;
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+  background: #f1f3f5;
 }
 
-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 15px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #d32f2f;
-}
-
-/* Links do Editar */
-a {
-    color: #2196f3;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-a:hover {
-    background-color: #e3f2fd;
-}
-
+/* =======================
+   FORMULÁRIOS
+======================= */
 form {
-    display: inline;
+  background: #fff;
+  padding: 2.5rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  border-radius: var(--borda-radius);
+  box-shadow: var(--sombra-suave);
 }
 
-/* Responsividade */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #343a40;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 1.25rem;
+  border: 1px solid #ced4da;
+  border-radius: var(--borda-radius);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* =======================
+   BOTÕES (A GRANDE MUDANÇA)
+======================= */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--borda-radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Principal */
+.btn-primary {
+  background: var(--cor-primaria);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--cor-primaria-hover);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+/* Deletar - Estilo "Outline" */
+.btn-danger {
+  background: transparent;
+  color: var(--cor-perigo);
+  border-color: var(--cor-perigo);
+}
+
+.btn-danger:hover {
+  background: var(--cor-perigo);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+/* Secundário */
+.btn-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #5c636a;
+}
+
+/* =======================
+   FLASH MESSAGES
+======================= */
+.flash {
+  padding: 1rem;
+  margin: 0 auto 2rem auto;
+  border-radius: var(--borda-radius);
+  color: #fff;
+  font-weight: 500;
+  max-width: 1200px;
+  text-align: center;
+  box-shadow: var(--sombra-suave);
+}
+
+.flash.success {
+  background: var(--cor-sucesso);
+}
+
+.flash.error {
+  background: var(--cor-perigo);
+}
+
+/* =======================
+   AÇÕES TABELA
+======================= */
+.botoes-tabela {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* =======================
+   RESPONSIVO
+======================= */
 @media (max-width: 768px) {
-    header {
-        padding: 15px 0;
-    }
+  .container {
+    padding: 0 16px;
+  }
 
-    h1 {
-        font-size: 2em;
-    }
+  nav {
+    flex-direction: column;
+  }
 
-    nav a {
-        font-size: 1em;
-        margin: 0 10px;
-    }
+  form {
+    padding: 1.5rem;
+  }
 
-    table {
-        font-size: 0.9em;
-    }
-
-    th, td {
-        padding: 10px 12px;
-    }
-
-    button {
-        padding: 5px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    table {
-        font-size: 0.8em;
-    }
-
-    button {
-        font-size: 0.9em;
-    }
-
-    nav a {
-        font-size: 0.9em;
-    }
+  /* Faz a tabela rolar horizontalmente em telas pequenas */
+  .tabela-wrapper {
+      overflow-x: auto;
+  }
 }

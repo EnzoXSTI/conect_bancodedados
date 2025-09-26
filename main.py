@@ -2,12 +2,10 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from flask_bcrypt import generate_password_hash, check_password_hash
 import fdb
 
-
 app = Flask(__name__)
 app.secret_key = 'senhasupersecretaquenemumhakeralemaodescobre'
 
 # Configuração do banco de dados
-
 host = 'localhost'
 database = r'C:\Users\Aluno\BANCO\BANCO.FDB'
 user = 'sysdba'
@@ -19,7 +17,6 @@ con = fdb.connect(host=host, database=database, user=user, password=password)
 # ROTAS RELACIONADAS A LIVROS
 
 # Rota principal - listar livros
-
 @app.route('/')
 def index():
     cursor = con.cursor()
@@ -55,15 +52,17 @@ def criar():
 
         # Inserir novo livro
         cursor.execute(
-            "INSERT INTO livros (TITULO, AUTOR, ANO_PUBLICACAO) VALUES (?, ?, ?) RETURNING id_livro",
+            "INSERT INTO livro (TITULO, AUTOR, ANO_PUBLICACAO) VALUES (?, ?, ?) RETURNING id_livro",
             (titulo, autor, ano_publicacao)
         )
 
         id_livro = cursor.fetchone()[0]
         con.commit()
 
-        arquivo = request.files['arquivo']
-        arquivo.save(f'uploads/capa{id_livro}.jpg')
+        if 'arquivo' in request.files:
+            arquivo = request.files['arquivo']
+            if arquivo.filename:
+                arquivo.save(f'uploads/capa{id_livro}.jpg')
     finally:
         cursor.close()
         flash('O livro foi cadastrado com sucesso!')
@@ -72,7 +71,6 @@ def criar():
 
 @app.route('/atualizar')
 def atualizar():
-    # A rota '/atualizar' não está sendo usada e não faz sentido sem um formulário ou lógica. Você pode removê-la ou adaptá-la.
     return render_template('editar.html', titulo='Editar livro')
 
 
@@ -105,8 +103,7 @@ def editar(id):
 
 @app.route('/deletar/<int:id>', methods=('POST',))
 def deletar(id):
-    cursor = con.cursor()  # Abre o cursor
-
+    cursor = con.cursor()
     try:
         cursor.execute('DELETE FROM livro WHERE id_livro = ?', (id,))
         con.commit()
@@ -126,7 +123,7 @@ def deletar(id):
 @app.route('/usuarios')
 def usuarios():
     cursor = con.cursor()
-    cursor.execute("SELECT ID_USUARIO, NOME, EMAIL, SENHA FROM USUARIOS")
+    cursor.execute("SELECT ID_USUARIO, NOME, EMAIL FROM USUARIOS")
     usuarios = cursor.fetchall()
     cursor.close()
     return render_template('usuarios.html', usuarios=usuarios)
@@ -206,9 +203,12 @@ def deletarusuario(id):
     return redirect(url_for('usuarios'))
 
 
+# Página de login
 @app.route('/nlogin')
 def nlogin():
     return render_template('login.html', titulo="novo usuario")
+
+
 # Login de usuário
 @app.route('/login', methods=["POST"])
 def login():
@@ -216,7 +216,6 @@ def login():
     senha = request.form['senha']
 
     cursor = con.cursor()
-
     cursor.execute('SELECT ID_USUARIO, EMAIL, SENHA FROM USUARIOS WHERE EMAIL = ?', [email])
     usuario = cursor.fetchone()
     cursor.close()
@@ -228,11 +227,18 @@ def login():
     senha_hash = usuario[2]
 
     if check_password_hash(senha_hash, senha):
+        session['id_usuario'] = usuario[0]
         flash('usuario logado')
         return redirect(url_for('usuarios'))
     else:
         flash('senha errada')
         return redirect(url_for('nlogin'))
+
+
+
+@app.route('/uploads/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads', nome_arquivo)
 
 
 if __name__ == '__main__':
